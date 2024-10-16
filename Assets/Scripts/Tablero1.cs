@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Tilemaps;
+using Unity.VisualScripting;
 
 public class Tablero1 : MonoBehaviour
 {
@@ -97,47 +98,72 @@ public class Tablero1 : MonoBehaviour
     }
     private void UpdateState()
     {
+        var newAliveCells = new HashSet<Vector3Int>();  // Nuevo conjunto para las celdas vivas
+        CeldasVerificar.Clear();
+
+        // Evalua solo la fila actual de celdas vivas y sus vecinos
         foreach (Vector3Int cell in CeldasVivas)
         {
+            Vector3Int leftNeighbor = cell + new Vector3Int(-1, 0, 0);
+            Vector3Int rightNeighbor = cell + new Vector3Int(1, 0, 0);
 
-            for (int x = -1; x <= 1; x++)
+            // Verifica que los vecinos estén dentro de los límites
+            if (Mathf.Abs(leftNeighbor.x) <= LimiteX)
             {
-                for (int y = -1; y <= 1; y++)
-                {
-                    Vector3Int neighborCell = cell + new Vector3Int(x, y, 0); // checa que esten dentro del limte.
-                    if (Mathf.Abs(neighborCell.x) <= LimiteX && Mathf.Abs(neighborCell.y) <= LimiteY)
-                    {
-                        CeldasVerificar.Add(neighborCell);
-                    }
-                }
+                CeldasVerificar.Add(leftNeighbor);
+            }
+            if (Mathf.Abs(rightNeighbor.x) <= LimiteX)
+            {
+                CeldasVerificar.Add(rightNeighbor);
+            }
+
+            // Revisa la celda actual
+            if (Mathf.Abs(cell.x) <= LimiteX)
+            {
+                CeldasVerificar.Add(cell);
             }
         }
 
-        foreach(Vector3Int cell in CeldasVerificar)
+        // Evalua el estado de las celdas para la siguiente generación
+        foreach (Vector3Int cell in CeldasVerificar)
         {
-            int neighbors = CountNeighbors(cell);
-            bool Vivo =  IsVivo(cell);
+            Vector3Int leftNeighbor = cell + new Vector3Int(-1, 0, 0);
+            Vector3Int rightNeighbor = cell + new Vector3Int(1, 0, 0);
 
-            if(!Vivo && neighbors == 3)
+            // Implementa la regla 30
+            bool newAliveState = Regla(IsVivo(leftNeighbor), IsVivo(cell), IsVivo(rightNeighbor));
+
+            // Cambia el estado de la celda en el nivel inferior
+            Vector3Int lowerCell = cell + new Vector3Int(0, -1, 0);
+            if (newAliveState)
             {
-                SiguenteEstado.SetTile(cell, vivo);
-                CeldasVivas.Add(cell);
-            }
-            else if (Vivo && (neighbors < 2 || neighbors > 3))
-            {
-                SiguenteEstado.SetTile(cell, muerto);
-                CeldasVivas.Remove(cell);
+                SiguenteEstado.SetTile(lowerCell, vivo);
+                newAliveCells.Add(lowerCell);
             }
             else
             {
-                SiguenteEstado.SetTile(cell, EstadoActual.GetTile(cell));
+                SiguenteEstado.SetTile(lowerCell, vivo);
             }
         }
 
+        // Actualiza las celdas vivas para la siguiente iteración
+        CeldasVivas = newAliveCells;
+
+        // Intercambiamos los Tilemaps
         Tilemap temp = EstadoActual;
         EstadoActual = SiguenteEstado;
         SiguenteEstado = temp;
-        SiguenteEstado.ClearAllTiles();
+    }
+
+    private bool Regla(bool IzquierdaVivo, bool estadoVivo, bool DerechaVivo)
+    {
+        // regla 30 
+        if (IzquierdaVivo && !estadoVivo && !DerechaVivo) return true;
+        if (!IzquierdaVivo && !estadoVivo && !DerechaVivo) return true;
+        if (!IzquierdaVivo && !estadoVivo && !DerechaVivo) return true;
+        if (!IzquierdaVivo && !estadoVivo && !DerechaVivo) return false;
+
+        return false;
     }
     private int CountNeighbors(Vector3Int cell)
     {
