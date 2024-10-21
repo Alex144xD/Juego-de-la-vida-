@@ -14,6 +14,7 @@ public class Tablero1 : MonoBehaviour
     [SerializeField] private Tile muerto;
     [SerializeField] private Pattern pattern;
     [SerializeField] private float updateInterval = 0.05f;
+    public int Numregla;
 
     // Para de limitar el área de la simulación.
     [SerializeField] private int LimiteX;
@@ -157,13 +158,23 @@ public class Tablero1 : MonoBehaviour
 
     private bool Regla(bool IzquierdaVivo, bool estadoVivo, bool DerechaVivo)
     {
-        // regla 30 
-        if (IzquierdaVivo && !estadoVivo && !DerechaVivo) return true;
-        if (!IzquierdaVivo && !estadoVivo && !DerechaVivo) return true;
-        if (!IzquierdaVivo && !estadoVivo && !DerechaVivo) return true;
-        if (!IzquierdaVivo && !estadoVivo && !DerechaVivo) return false;
+        // regla
+        int Est = 0;
+        int EstI = 0;
+        int EstC = 0;
+        int EstD = 0;
+        if (IzquierdaVivo)
+             EstI = 4;
+        else EstI = 0;
+        if (estadoVivo)
+             EstC = 2;
+        else EstC = 0;
+        if (DerechaVivo)
+             EstD = 1;
+        else EstD =0;
+        Est = EstI+EstC+EstD;
 
-        return false;
+        return((Numregla >> Est) & 1 ) ==1;
     }
     private int CountNeighbors(Vector3Int cell)
     {

@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -348, y: -51}
+  m_AnchoredPosition: {x: -274, y: -49}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &335209262
@@ -1251,10 +1251,11 @@ MonoBehaviour:
   SiguenteEstado: {fileID: 1717428955}
   vivo: {fileID: 11400000, guid: c8ba0e1bea030f04d9a69878cf2d9916, type: 2}
   muerto: {fileID: 0}
-  pattern: {fileID: 11400000, guid: 3567de22a7abca9419dad740cf369a18, type: 2}
+  pattern: {fileID: 11400000, guid: 8195e6e820ace3f40baea4e5d3e1623f, type: 2}
   updateInterval: 0.05
-  LimiteX: 0
-  LimiteY: 0
+  Numregla: 20
+  LimiteX: 100
+  LimiteY: 100
   inputFileX: {fileID: 430041387}
   inputFieldY: {fileID: 335209262}
 --- !u!1 &1137979561
