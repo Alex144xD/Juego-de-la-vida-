@@ -1224,17 +1224,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966168227}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a70f7ec00b4b154c94e21bfc7ed5ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EstadoActual: {fileID: 1354800736}
-  SiguenteEstado: {fileID: 0}
+  SiguienteEstado: {fileID: 1717428955}
   vivo: {fileID: 11400000, guid: c8ba0e1bea030f04d9a69878cf2d9916, type: 2}
   muerto: {fileID: 0}
+  tierra: {fileID: 11400000, guid: 487f4a355db369241842a4aef1028c3f, type: 2}
+  agua: {fileID: 11400000, guid: 4a2c2958c28138541a97d7e930f126ad, type: 2}
+  bosque: {fileID: 11400000, guid: 1608ac68fcf7aef459a91c1e3dd272a9, type: 2}
   pattern: {fileID: 11400000, guid: 3567de22a7abca9419dad740cf369a18, type: 2}
   updateInterval: 0.05
+  anchoMapa: 10
+  altoMapa: 10
 --- !u!114 &966168232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,7 +1247,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966168227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d8bfa7cc85e4641a0ab285c3532880, type: 3}
   m_Name: 
@@ -2035,7 +2040,7 @@ GameObject:
   - component: {fileID: 1717428955}
   - component: {fileID: 1717428956}
   m_Layer: 0
-  m_Name: Tilemap
+  m_Name: Tilemap2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
