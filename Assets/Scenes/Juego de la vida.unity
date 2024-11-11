@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -274, y: -49}
+  m_AnchoredPosition: {x: -104, y: -49}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &335209262
@@ -453,7 +453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 196, y: -55}
+  m_AnchoredPosition: {x: 109, y: -55}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430041387
@@ -1232,14 +1232,14 @@ MonoBehaviour:
   EstadoActual: {fileID: 1354800736}
   SiguienteEstado: {fileID: 1717428955}
   vivo: {fileID: 11400000, guid: c8ba0e1bea030f04d9a69878cf2d9916, type: 2}
-  muerto: {fileID: 0}
+  muerto: {fileID: 11400000, guid: 07bd657937b596947859a86945a70f31, type: 2}
   tierra: {fileID: 11400000, guid: 487f4a355db369241842a4aef1028c3f, type: 2}
   agua: {fileID: 11400000, guid: 4a2c2958c28138541a97d7e930f126ad, type: 2}
   bosque: {fileID: 11400000, guid: 1608ac68fcf7aef459a91c1e3dd272a9, type: 2}
   pattern: {fileID: 11400000, guid: 3567de22a7abca9419dad740cf369a18, type: 2}
   updateInterval: 0.05
-  anchoMapa: 10
-  altoMapa: 10
+  anchoMapa: 50
+  altoMapa: 50
 --- !u!114 &966168232
 MonoBehaviour:
   m_ObjectHideFlags: 0

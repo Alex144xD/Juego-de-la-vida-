@@ -7,8 +7,8 @@ public class Tablero : MonoBehaviour
 {
     [SerializeField] private Tilemap EstadoActual;
     [SerializeField] private Tilemap SiguienteEstado;
-    [SerializeField] private Tile vivo;
-    [SerializeField] private Tile muerto;
+    [SerializeField] private Tile vivo; // arena 
+    [SerializeField] private Tile muerto; // islas flotantes
 
     // Nuevas tiles para diferentes tipos de terreno
     [SerializeField] private Tile tierra;
@@ -40,7 +40,7 @@ public class Tablero : MonoBehaviour
 
     void Update()
     {
-        Clear();
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -137,7 +137,10 @@ public class Tablero : MonoBehaviour
     {
         foreach (Vector3Int cell in CeldasVivas)
         {
-
+            if (Mathf.Abs(cell.x) > anchoMapa/2|| Mathf.Abs(cell.y) > altoMapa/2) // revisa que esté dentro del límite
+            {
+                continue;
+            }
             for (int x = -1; x <= 1; x++)
             {
                 for (int y = -1; y <= 1; y++)
@@ -149,6 +152,11 @@ public class Tablero : MonoBehaviour
 
         foreach (Vector3Int cell in CeldasVerificar)
         {
+            if (Mathf.Abs(cell.x) > anchoMapa/2 || Mathf.Abs(cell.y) > altoMapa/2) // revisa que esté dentro del límite
+            {
+                continue;
+            }
+
             int neighbors = CountNeighbors(cell);
             bool Vivo = IsVivo(cell);
 
@@ -157,10 +165,25 @@ public class Tablero : MonoBehaviour
                 SiguienteEstado.SetTile(cell, vivo);
                 CeldasVivas.Add(cell);
             }
-            else if (Vivo && (neighbors < 2 || neighbors > 3))
+            else if (Vivo && (neighbors < 2 || neighbors == 8))
             {
                 SiguienteEstado.SetTile(cell, muerto);
                 CeldasVivas.Remove(cell);
+            }
+            else if (Vivo && (neighbors > 4 && neighbors < 7))
+            {
+                SiguienteEstado.SetTile(cell, bosque);
+                CeldasVivas.Add(cell);
+            }
+            else if (Vivo && (neighbors > 3 && neighbors < 5))
+            {
+                SiguienteEstado.SetTile(cell, tierra);
+                CeldasVivas.Add(cell);
+            }
+            else if (Vivo && (neighbors > 6 && neighbors < 8))
+            {
+                SiguienteEstado.SetTile(cell, agua);
+                CeldasVivas.Add(cell);
             }
             else
             {

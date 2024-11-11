@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tierra
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7482667652216324306, guid: 19373abc10b6608429380e11065320fa, type: 3}
-  m_Color: {r: 0.6698113, g: 0.20796558, b: 0.046760388, a: 1}
+  m_Color: {r: 0.3773585, g: 0.10628906, b: 0.012103926, a: 1}
   m_Transform:
     e00: 1
     e01: 0

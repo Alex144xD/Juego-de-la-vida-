@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Muerto
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7482667652216324306, guid: 19373abc10b6608429380e11065320fa, type: 3}
-  m_Color: {r: 0.6132076, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.19375908, g: 0, b: 0.1981132, a: 1}
   m_Transform:
     e00: 1
     e01: 0
